@@ -1,11 +1,9 @@
 import discord
 import os
 import random
-from difflib import SequenceMatcher
 from dotenv import load_dotenv
 from resources import gifs, swearwords
 from checker import censor_text, is_safe
-import re
 
 load_dotenv()
 TOKEN = os.getenv("d_token")
@@ -25,14 +23,6 @@ class myClient(discord.Client):
         if message.author == self.user:
             return
 
-        #user_message = message.content.lower().split()
-
-        #for index, word in enumerate(user_message):
-        #    for swear in swearwords:
-        #        if user_message[index] == swear:
-        #            message_safe = False
-        #            user_message[index] = "▂" * len(word)
-        #            censored_message = " ".join(user_message)
         text = message.content.lower()
 
         message_safe = is_safe(text, swearwords)
